@@ -1,0 +1,8 @@
+Package: ISD-lite
+Title: Use Data from the ISD-lite station dataset
+Version: 0.1
+Authors@R: 'Philip Brohan <philip@brohan.org> [aut, cre]'
+Description: Use Data from the ISD-lite station dataset
+Depends: R (>= 3.0.2)
+License: Apache
+LazyData: true
