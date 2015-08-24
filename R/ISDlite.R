@@ -12,10 +12,10 @@
 #' @section functions:
 #' \itemize{
 #'   \item \code{\link{ReadObs}} - read a selected set of observations.
-#'   \item \code{\link{ReadStationFile}} - read the obs in one file: one
-#'         year for one station.
+#'   \item \code{\link{ReadStation}} - read obs from one station.
 #'   \item \code{\link{ReadMetaData}} - read the metadata (station names and
 #'         locations.
+#'   \item \code{\link{FindStations}} - Find available stations.
 #' }
 #'
 #' @section data structure:
@@ -27,6 +27,6 @@
 #' }
 #'
 #' @docType package
-#' @name ISD-lite
+#' @name ISDlite
 NULL
 
