@@ -4,14 +4,14 @@
 \alias{AddReanalysis}
 \title{Extracts reanalysis output to match a set of station data.}
 \usage{
-AddReanalysis(obs, var = "air.2m", type = "actual", version = "3.5.1")
+AddReanalysis(obs, var = "air.2m", type = "mean", version = "3.5.1")
 }
 \arguments{
 \item{obs}{- list of station data from \code{\link{ReadObs}}.}
 
 \item{var}{- Which reanalysis variable (default 'air.2m').}
 
-\item{type}{- What reanalysis data is required? 'actual' (default),
+\item{type}{- What reanalysis data is required? 'mean' (default),
 'spread', or 'normal'}
 
 \item{version}{- Which version of 20CR (ensda run number), defaults
@@ -19,7 +19,7 @@ to '3.5.1' (v2c).}
 }
 \value{
 list - as input, but for each station a new component
-                'reanalysis.actual' (or '.normal' or '.spread'),
+                'reanalysis.mean' (or '.normal' or '.spread'),
                 a data frame with columns 'chron' and var.
 }
 \description{

@@ -63,7 +63,7 @@ ReadStationFile<-function(fname) {
                            'WS','TCC','LP1H','LP6H'),
                stringsAsFactors=FALSE,
                na.strings=' -9999')
-    sd$chron<-chron(dates=sprintf("%04d/%02d/%02d",sd$YR,sd$MO,sd$DY),
+    sd$chron<-chron::chron(dates=sprintf("%04d/%02d/%02d",sd$YR,sd$MO,sd$DY),
                     times=sprintf("%02d:00:00",sd$HR),
                     format = c(dates = "y/m/d", times = "h:m:s"))
     sd$AT<-sd$AT/10 # Scale to degreesC
@@ -92,7 +92,7 @@ ReadStation<-function(usaf,wban,date.range=c('1000-01-01:00','3000-12-31:23'),
     
   dir<-GetDataDir()
   if(is.null(meta)) meta<-ReadMetaData()
-    chrn.range<-chron(dates=sprintf("%s/%s/%s",
+    chrn.range<-chron::chron(dates=sprintf("%s/%s/%s",
                         substr(date.range,1,4),
                         substr(date.range,6,7),
                         substr(date.range,9,10)),

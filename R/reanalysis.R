@@ -18,24 +18,24 @@
 #' @export
 #' @param obs - list of station data from \code{\link{ReadObs}}.
 #' @param var - Which reanalysis variable (default 'air.2m').
-#' @param type - What reanalysis data is required? 'actual' (default),
+#' @param type - What reanalysis data is required? 'mean' (default),
 #'                'spread', or 'normal'
 #' @param version - Which version of 20CR (ensda run number), defaults
 #'                   to '3.5.1' (v2c).
 #' @return list - as input, but for each station a new component
-#'                 'reanalysis.actual' (or '.normal' or '.spread'), 
+#'                 'reanalysis.mean' (or '.normal' or '.spread'), 
 #'                 a data frame with columns 'chron' and var.
-AddReanalysis<-function(obs,var='air.2m',type='actual',version='3.5.1') {
+AddReanalysis<-function(obs,var='air.2m',type='mean',version='3.5.1') {
 
-  lons<-rep(NA,length(obs))
+  lats<-rep(NA,length(obs))
   lons<-rep(NA,length(obs))
   start.date<-NA
   end.date<-NA
   for(i in seq_along(obs)) {
     lons[i]<-obs[[i]]$LON
     lats[i]<-obs[[i]]$LAT
-    start.date<-min(c(start.date,obs[[i]]$chron),na.rm=TRUE)
-    end.date<-max(c(end.date,obs[[i]]$chron),na.rm=TRUE)
+    start.date<-as.chron(min(c(start.date,obs[[i]]$data$chron),na.rm=TRUE))
+    end.date<-as.chron(max(c(end.date,obs[[i]]$data$chron),na.rm=TRUE))
   }
   RData<-array(data=NA,dim=c(length(obs),length(seq(start.date,end.date))*4))
   chrn<-rep(NA,length(seq(start.date,end.date))*4)
@@ -46,7 +46,7 @@ AddReanalysis<-function(obs,var='air.2m',type='actual',version='3.5.1') {
     day<-as.integer(days(dy))
     for(hour in c(0,6,12,18)) {
 
-      chrn[count]<-chron(dates=sprintf("%04d/%02d/%02d",year,month,day),
+      chrn[count]<-chron::chron(dates=sprintf("%04d/%02d/%02d",year,month,day),
                     times=sprintf("%02d:00:00",hour),
                     format = c(dates = "y/m/d", times = "h:m:s"))
       
@@ -85,7 +85,7 @@ AddReanalysis<-function(obs,var='air.2m',type='actual',version='3.5.1') {
 #'                   to specified hour
 GetVarAtHour<-function(obs,year,month,day,hour,var='AT',type='actual') {
   
-  chrn<-chron(dates=sprintf("%04d/%02d/%02d",year,month,day),
+  chrn<-chron::chron(dates=sprintf("%04d/%02d/%02d",year,month,day),
                     times=sprintf("%02d:00:00",hour),
                     format = c(dates = "y/m/d", times = "h:m:s"))
 
