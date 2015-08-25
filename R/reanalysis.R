@@ -89,15 +89,15 @@ GetVarAtHour<-function(obs,year,month,day,hour,var='AT',type='actual') {
                     times=sprintf("%02d:00:00",hour),
                     format = c(dates = "y/m/d", times = "h:m:s"))
 
-  Result<-rep(NA,length(obs))
+  Results<-rep(NA,length(obs))
 
   for(i in seq_along(obs)) {
   
     if(var %in% names(obs[[1]]$data)) { # observed value
        if(type != 'actual') stop('Only actuals available for observed values')
-       w<-which(abs(obs[[i]]$data$chron-chrn)<1/48 & !is.na(obs[[i]]$V5))
+       w<-which(abs(obs[[i]]$data$chron-chrn)<1/48 & !is.na(obs[[i]]$data[[var]]))
        if(length(w)>0) { # Within an hour of an ob - use directly
-          Result[i]<-obs[[i]]$data[[var]][w[1]]
+          Results[i]<-obs[[i]]$data[[var]][w[1]]
        } else { # interpolate if 2 nearby values are available
 	w<-which(abs(obs[[i]]$data$chron-chrn)<0.6 & !is.na(obs[[i]]$data[[var]]))
 	if(length(w)>1) {
