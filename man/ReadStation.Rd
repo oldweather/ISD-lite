@@ -4,11 +4,10 @@
 \alias{ReadStation}
 \title{Read in the hourly observations from one station for a given period.}
 \usage{
-ReadStation(dir, usaf, wban, date.range, meta = NULL)
+ReadStation(usaf, wban, date.range = c("1000-01-01:00", "3000-12-31:23"),
+  meta = NULL)
 }
 \arguments{
-\item{dir}{- directory containing ISD-lite}
-
 \item{usaf}{- USAF number of station.}
 
 \item{wban}{- WBAN number of station.}

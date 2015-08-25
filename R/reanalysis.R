@@ -83,7 +83,7 @@ AddReanalysis<-function(obs,var='air.2m',type='actual',version='3.5.1') {
 #'                'spread', or 'normal'
 #' @return values - for each station in the input, selected value interpolated
 #'                   to specified hour
-ISDGetVarAtHour<-function(obs,year,month,day,hour,var='AT',type='actual') {
+GetVarAtHour<-function(obs,year,month,day,hour,var='AT',type='actual') {
   
   chrn<-chron(dates=sprintf("%04d/%02d/%02d",year,month,day),
                     times=sprintf("%02d:00:00",hour),
@@ -93,7 +93,7 @@ ISDGetVarAtHour<-function(obs,year,month,day,hour,var='AT',type='actual') {
 
   for(i in seq_along(obs)) {
   
-    if(var %in% names(obs[[1]]$data) { # observed value
+    if(var %in% names(obs[[1]]$data)) { # observed value
        if(type != 'actual') stop('Only actuals available for observed values')
        w<-which(abs(obs[[i]]$data$chron-chrn)<1/48 & !is.na(obs[[i]]$V5))
        if(length(w)>0) { # Within an hour of an ob - use directly
@@ -103,39 +103,20 @@ ISDGetVarAtHour<-function(obs,year,month,day,hour,var='AT',type='actual') {
 	if(length(w)>1) {
 	  Results[i]<-(approx(x=obs[[i]]$data$chron[w],
 				  y=obs[[i]]$data[[var]][w],
-				  xout=chrn)$y)/10
+				  xout=chrn)$y)
 	}
+      }
     } else {
-       if(type != 'actual')
-
-    
-         
-    
-
-  slice<-list(
-           station=rep('',length(obs)),
-           lat=rep(NA,length(obs)),
-           lon=rep(NA,length(obs)),
-           values=rep(NA,length(obs)),
-           var=var,
-           chron=chrn)
-  
-  for(i in seq_along(obs)) {
-    slice$station[i]<-names(obs)[i]
-    w<-which(sprintf("%06d-%05d",md$V1,md$V2)==names(obs)[i])
-    slice$lat[i]<-md[w,6]
-    slice$lon[i]<-md[w,7]
-    w<-which(abs(obs[[i]]$chron-chrn)<1/48 & !is.na(obs[[i]]$V5))
-    if(length(w)>0) { # Within an hour of an ob - use directly
-      slice$values[i]<-obs[[i]]$V5[w[1]]/10
-    } else { # interpolate if 2 nearby values are available
-	w<-which(abs(obs[[i]]$chron-chrn)<0.6 & !is.na(obs[[i]]$V5))
+       if(var != 'air.2m') stop('Only reanalysis variable "air.2m" currently supported')
+       title<-sprintf('reanalysis.%s',type)
+	w<-which(abs(obs[[i]][[title]]$chron-chrn)<0.6 & !is.na(obs[[i]][[title]][[var]]))
 	if(length(w)>1) {
-	  slice$values[i]<-(approx(x=obs[[i]]$chron[w],
-				  y=obs[[i]]$V5[w],
-				  xout=chrn)$y)/10
+	  Results[i]<-approx(x=obs[[i]][[title]]$chron[w],
+				  y=obs[[i]][[title]][[var]][w],
+				  xout=chrn)
+          if(type!='spread') Results[i]<-Results[i]-273.15
 	}
-    }
+      }
   }
-  return(slice)
+  return(Results)
 }

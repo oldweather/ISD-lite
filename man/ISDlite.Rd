@@ -9,6 +9,10 @@
  requires a directory to work from (could be a URL rather than a local
   directory of course).}
 \description{
+Requires the environment variable ISD_dir to be set to the location of the
+  data files.
+}
+\details{
 ISD (https://www.ncdc.noaa.gov/isd).
  This packace supports only ISD-lite
  (http://www1.ncdc.noaa.gov/pub/data/noaa/isd-lite/isd-lite-technical-document.pdf).

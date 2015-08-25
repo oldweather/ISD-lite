@@ -4,12 +4,10 @@
 \alias{FindStations}
 \title{Find stations with data in a given region and date range.}
 \usage{
-FindStations(dir, lat.range = c(-90, 90), lon.range = c(-180, 180),
+FindStations(lat.range = c(-90, 90), lon.range = c(-180, 180),
   date.range = c("1000-01-01:00", "3000-12-31:23"), meta = NULL)
 }
 \arguments{
-\item{dir}{- directory containing ISD-lite}
-
 \item{lat.range}{- Selected latitudes, defaults to c(-90.90).}
 
 \item{lon.range}{- Selected longitudes, defaults to c(-180,180).}

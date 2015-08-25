@@ -5,10 +5,7 @@
 \title{Read in the station metadata: Numbers, name, lat, lon, height for
 all stations. (Reads the isd-history.txt file).}
 \usage{
-ReadMetaData(dir)
-}
-\arguments{
-\item{dir}{- directory containing ISD-lite}
+ReadMetaData()
 }
 \value{
 data frame - 1 row per station, columns as in the ISD-lite

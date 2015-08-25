@@ -2,6 +2,9 @@
 #'  Download the data first (Online access too slow & limited):
 #'  requires a directory to work from (could be a URL rather than a local
 #'   directory of course).
+#'
+#' Requires the environment variable ISD_dir to be set to the location of the
+#'   data files.
 #' 
 #'  ISD (https://www.ncdc.noaa.gov/isd).
 #'  This packace supports only ISD-lite

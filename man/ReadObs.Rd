@@ -4,11 +4,9 @@
 \alias{ReadObs}
 \title{Reads all observations in a given region and date range.}
 \usage{
-ReadObs(dir, lat.range, lon.range, date.range, meta = NULL)
+ReadObs(lat.range, lon.range, date.range, meta = NULL)
 }
 \arguments{
-\item{dir}{- directory containing ISD-lite}
-
 \item{lat.range}{- Selected latitudes, defaults to c(-90.90).}
 
 \item{lon.range}{- Selected longitudes, defaults to c(-180,180).}
