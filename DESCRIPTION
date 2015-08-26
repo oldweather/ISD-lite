@@ -9,5 +9,6 @@ Depends:
 License: Apache
 LazyData: true
 Suggests: 
+  GSDF,
   GSDF.TWCR,
   testthat

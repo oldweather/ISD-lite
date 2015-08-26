@@ -4,7 +4,7 @@
 \alias{GetVarAtHour}
 \title{Get ISD data interpolated to a given hour.}
 \usage{
-GetVarAtHour(obs, year, month, day, hour, var = "AT", type = "actual")
+GetVarAtHour(obs, year, month, day, hour, var = "AT", type = "mean")
 }
 \arguments{
 \item{obs}{- list of station data from \code{\link{ReadObs}}.}
