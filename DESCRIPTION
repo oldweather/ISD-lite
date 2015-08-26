@@ -4,7 +4,7 @@ Version: 0.1
 Authors@R: 'Philip Brohan <philip@brohan.org> [aut, cre]'
 Description: Use Data from the ISD-lite station dataset
 Depends: 
-  R (>= 3.0.2),
+  R (>= 3.0.1),
   chron
 License: Apache
 LazyData: true
