@@ -1,2 +1,2 @@
 # ISD-lite
-Interface NOAA's to Integrated Surface Dataset 
+Interface to NOAA's Integrated Surface Dataset 
