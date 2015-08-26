@@ -34,9 +34,9 @@ Sys.getenv('GSCRATCH')
 ReadMetaData<-function() {
   fname<-sprintf("%s/isd-history.txt",GetDataDir())
   md<-read.fwf(fname,
-               c(6,6,30,3,10,9,9,8,9,9),
+               c(6,6,30,3,5,5,9,9,8,9,9),
                skip=22,stringsAsFactors=FALSE,
-               col.names=c('USAF','WBAN','CTRY','ST',
+               col.names=c('USAF','WBAN','NAME','CTRY','ST',
                            'ICAO','LAT','LON','ELEV',
                            'BEGIN','END'),
                comment.char="")
@@ -120,6 +120,7 @@ ReadStation<-function(usaf,wban,date.range=c('1000-01-01:00','3000-12-31:23'),
       }
     
     return(list(USAF=meta$USAF[w],WBAN=meta$WBAN[w],LAT=meta$LAT[w],
+                NAME=meta$NAME[w],CTRY=meta$CTRY[w],ST=meta$ST[w],ICAO=meta$ICAO[w],
                 LON=meta$LON[w],ELEV=meta$ELEV[w],data=station))
 }
 

@@ -24,10 +24,10 @@ test_that("Read metadata", {
 
 # Check metadata reads OK
   md<<-ReadMetaData()
-  expect_equal(length(md),10)
+  expect_equal(length(md),11)
   # Test some sample expected values - might change if using updated data
   expect_more_than(length(md$USAF),29000)
-  expect_equal(md$LAT[29000],32.855)
+  expect_equal(md$LAT[29000],32.24)
   expect_equal(md$USAF[29],8408)
   
 # Find stations from metadata
